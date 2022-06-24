@@ -39,7 +39,7 @@ interface BaseContract
      * @return mixed
      */
 
-     public function fin(int $id);
+     public function find(int $id);
      /**
      * Find one by ID or throw exception
      * @param int $id

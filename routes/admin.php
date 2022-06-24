@@ -26,8 +26,8 @@ Route::group(['prefix' => 'admin'],function(){
     //update settings
     Route::post('settings',[SettingController::class,'update'])
     ->name('admin.settings.update');
-       
-});
+
+    
 
 Route::group(['prefix' => 'categories'],function(){
 
@@ -37,4 +37,6 @@ Route::group(['prefix' => 'categories'],function(){
     Route::get('/{id}/edit',[CategoryController::class,'edit'])->name('admin.categories.edit');
     Route::get('/update',[CategoryController::class,'update'])->name('admin.categories.update');
     Route::get('/{id}/delete',[CategoryController::class,'delete'])->name('admin.categories.delete');
+});
+       
 });

@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Contracts\CategoryContract;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\CategoryRepository;
+use App\Repository\CategoryRepository;
+
+
 
 class RepositoryServiceProvider extends ServiceProvider
 {

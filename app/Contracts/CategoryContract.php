@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Contracts;
-
 /**
  * Interface CategoryContract
  * @package App\Contracts

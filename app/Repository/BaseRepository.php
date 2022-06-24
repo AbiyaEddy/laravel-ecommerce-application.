@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Contracts\BaseContract;
 use Illuminate\Database\Eloquent\Model;
@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
      * @return bool
      */
 
-     public function update(array $ttributes,in $id):bool
+     public function update(array $ttributes,int $id)
      {
         return $this->find($id)->update($attributes);
      }

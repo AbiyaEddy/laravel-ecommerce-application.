@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Seeder;
 use App\Models\Category;
 use Faker\Generator as Faker;
 

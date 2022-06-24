@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\Category;
 use App\Traits\UploadAble;
@@ -27,101 +27,98 @@ public function __construct(Category $model)
     parent::__construct($model);
     $this->model = $model;
 }
-
-public function listCategories(string $order ='id',string $sort='desc',array $columns=['*'])
+/**
+ * @param string $order
+ * @param string $sort
+ * @param array $columns
+ * @return mixed
+ */
+public function listCategories(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
 {
-    return $this->all($columns,$order,$sort);
+    return $this->all($columns, $order, $sort);
 }
 /**
  * @param int $id
  * @return mixed
  * @throws ModelNotFoundException
  */
-public function findCategoryById(int $id){
-
-    try{
+public function findCategoryById(int $id)
+{
+    try {
         return $this->findOneOrFail($id);
 
-    }catch(ModelNotFoundException $e)
+    } catch (ModelNotFoundException $e) {
 
-    {
-
-    throw new ModelNotFoundException($e);
-
+        throw new ModelNotFoundException($e);
     }
 }
 /**
  * @param array $params
  * @return Category|mixed
  */
-
- public function createCategory(array $params)
- {
-    try{
+public function createCategory(array $params)
+{
+    try {
         $collection = collect($params);
-
+        
         $image = null;
 
-        if($collection->has('image') && ($params['image'] instanceof UploadedFile)){
-            $image = $this->uploadOne($params['image'],'categories');
+        if ($collection->has('image') && ($params['image'] instanceof  UploadedFile)) {
+            $image = $this->uploadOne($params['image'], 'categories');
         }
-        $featured = $collection->has('featured')? 1 : 0;
 
-        $menu = $collection->has('menu') ? : 0;
+        $featured = $collection->has('featured') ? 1 : 0;
+        $menu = $collection->has('menu') ? 1 : 0;
 
-        $merge = $collection ->merge(compact('menu','image','featured'));
+        $merge = $collection->merge(compact('menu', 'image', 'featured'));
 
         $category = new Category($merge->all());
 
         $category->save();
 
         return $category;
-    }
-    catch(QueryException $exception){
 
+    } catch (QueryException $exception) {
         throw new InvalidArgumentException($exception->getMessage());
     }
- }
-
- /**
+}
+/**
  * @param array $params
  * @return mixed
  */
-
- public function updateCategory(array $params){
-
-    $category= $this->findCategoryById($params['id']);
+public function updateCategory(array $params)
+{
+    $category = $this->findCategoryById($params['id']);
 
     $collection = collect($params)->except('_token');
 
-    if($collection->has('image') && ($params['image'] instanceof UploadedFile)){
+    if ($collection->has('image') && ($params['image'] instanceof  UploadedFile)) {
 
-        if($category->image !=null)
-        {
+        if ($category->image != null) {
             $this->deleteOne($category->image);
         }
 
-        $image = $this->uploadOne($params['image'],'categories');
+        $image = $this->uploadOne($params['image'], 'categories');
     }
-    $featured = $collection->has('featured') ? 1 : 0 ;
-    $menu =$collection->has('menu') ? 1 : 0;
 
-    $merge = $collection->merge(compact('menu','image','featured'));
+    $featured = $collection->has('featured') ? 1 : 0;
+    $menu = $collection->has('menu') ? 1 : 0;
+
+    $merge = $collection->merge(compact('menu', 'image', 'featured'));
 
     $category->update($merge->all());
 
     return $category;
- }
-
- /**
+}
+/**
  * @param $id
  * @return bool|mixed
  */
 public function deleteCategory($id)
 {
-    $category =$this->findCategoryById($id);
+    $category = $this->findCategoryById($id);
 
-    if($category->image !=null){
+    if ($category->image != null) {
         $this->deleteOne($category->image);
     }
 
