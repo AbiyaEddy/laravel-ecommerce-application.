@@ -26,6 +26,7 @@ $factory->define(Category::class, function (Faker $faker) {
     return [
         'name'          =>  $faker->name,
         'description'   =>  $faker->realText(100),
+        'slug'   => $Str::slug($faker->name),
         'parent_id'     =>  1,
         'menu'          =>  1,
     ];

@@ -2,16 +2,17 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use App\Models\Setting;
 
 class SettingServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
-     *
+     *g
      * @return void
      */
     public function register()
