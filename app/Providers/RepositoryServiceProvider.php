@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use App\Repository\CategoryRepository;
 use App\Contracts\AttributeContract;
 use App\Repository\AttributeRepository;
+use App\Contracts\BrandContract;
+use App\Repository\BrandRepository;
 
 
 
@@ -17,6 +19,8 @@ class RepositoryServiceProvider extends ServiceProvider
         CategoryContract::class   =>    CategoryRepository::class,
 
         AttributeContract::class        =>          AttributeRepository::class,
+
+        BrandContract::class            =>          BrandRepository::class,
     ];
 
     /**

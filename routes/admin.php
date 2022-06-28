@@ -49,5 +49,22 @@ Route::group(['prefix'  =>   'attributes'], function() {
     Route::get('/{id}/delete', [AttributeController::class,'delete'])->name('admin.attributes.delete');
 
 });
-       
+
+    Route::post('/get-values', [AttributeValueController::class,'getValues']);
+    Route::post('/add-values', [AttributeValueController::class,'addValues']);
+    Route::post('/update-values', [AttributeValueController::class,'updateValues']);
+    Route::post('/delete-values', [AttributeValueController::class,'deleteValues']);
+
+
+    Route::group(['prefix'  =>   'brands'], function() {
+
+        Route::get('/', [BrandController::class,'index'])->name('admin.brands.index');
+        Route::get('/create', [BrandController::class,'create'])->name('admin.brands.create');
+        Route::post('/store', [BrandController::class,'store'])->name('admin.brands.store');
+        Route::get('/{id}/edit', [BrandController::class,'edit'])->name('admin.brands.edit');
+        Route::post('/update', [BrandController::class,'update'])->name('admin.brands.update');
+        Route::get('/{id}/delete', [BrandController::class,'delete'])->name('admin.brands.delete');
+    
+    });
+        
 });

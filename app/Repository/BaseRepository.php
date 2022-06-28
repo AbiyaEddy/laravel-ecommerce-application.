@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
     public function __construct(Model $model)
     {
-        $this->model =$model;
+        $this->model = $model;
     }
 
       /**
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
      */
     public function create(array $attributes)
     {
-        return $this->model->create($atributes);
+        return $this->model->create($attributes);
     }
 
     /**
@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
      * @return bool
      */
 
-     public function update(array $ttributes,int $id)
+     public function update(array $attributes,int $id) :bool
      {
         return $this->find($id)->update($attributes);
      }
@@ -68,7 +68,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
      */
 
      public function findOneOrFail(int $id){
-        return $this->model->findOneOrFail($id);
+        return $this->model->findOrFail($id);
      }
      /**
      * @param array $data
