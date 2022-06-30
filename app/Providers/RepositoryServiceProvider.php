@@ -9,6 +9,8 @@ use App\Contracts\AttributeContract;
 use App\Repository\AttributeRepository;
 use App\Contracts\BrandContract;
 use App\Repository\BrandRepository;
+use App\Contracts\ProductContract;
+use App\Repository\ProductRepository;
 
 
 
@@ -21,6 +23,8 @@ class RepositoryServiceProvider extends ServiceProvider
         AttributeContract::class        =>          AttributeRepository::class,
 
         BrandContract::class            =>          BrandRepository::class,
+
+        ProductContract::class          =>          ProductRepository::class,
     ];
 
     /**

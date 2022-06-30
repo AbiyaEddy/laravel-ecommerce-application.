@@ -8,29 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class ProductImage extends Model
 {
     use HasFactory;
-     /**
-     * @var string
-     */
-    protected $table = 'product_images';
-
-    /**
-     * @var array
-     */
-    protected $fillable = ['product_id', 'thumbnail', 'full'];
-
-    /**
-     * @var array
-     */
-    protected $casts = [
-        'product_id'    =>  'integer',
-    ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
+   
+        /**
+         * @var string
+         */
+        protected $table = 'product_images';
+    
+        /**
+         * @var array
+         */
+        protected $fillable = ['product_id', 'thumbnail', 'full'];
+    
+        /**
+         * @var array
+         */
+        protected $casts = [
+            'product_id'    =>  'integer',
+        ];
+    
+        /**
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         */
+        public function product()
+        {
+            return $this->belongsTo(Product::class);
+        }
     }
-}
 

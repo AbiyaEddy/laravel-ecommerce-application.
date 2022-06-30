@@ -9,7 +9,6 @@ class ProductAttribute extends Model
 {
     use HasFactory;
 
-    
     /**
      * @var string
      */
@@ -18,7 +17,7 @@ class ProductAttribute extends Model
     /**
      * @var array
      */
-    protected $fillable = ['product_id', 'quantity', 'price'];
+    protected $fillable = ['product_id', 'quantity', 'price' , 'value', 'attribute_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -27,20 +26,20 @@ class ProductAttribute extends Model
     {
         return $this->belongsTo(Product::class);
     }
-    
-        /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function attributes()
-    {
-        return $this->hasMany(ProductAttribute::class);
-    }
         /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function attributesValues()
     {
         return $this->belongsToMany(AttributeValue::class);
+    }
+
+    /**
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+ */
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
     }
 }
 

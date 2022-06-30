@@ -3,13 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
-    
     /**
      * @var string
      */
@@ -33,7 +30,7 @@ class Product extends Model
         'featured'  =>  'boolean'
     ];
 
-     /**
+    /**
      * @param $value
      */
     public function setNameAttribute($value)
@@ -42,6 +39,21 @@ class Product extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -50,19 +62,12 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
-        /**
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function images()
+    public function attributes()
     {
-        return $this->hasMany(ProductImage::class);
-    }
-        /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id');
+        return $this->hasMany(ProductAttribute::class);
     }
 }
-

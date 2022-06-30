@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateProductAttributesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('product_attributes', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('attribute_id');
+            $table->foreign('attribute_id')->references('id')->on('attributes');
+            $table->string('value');
             $table->integer('quantity');
             $table->decimal('price')->nullable();
             $table->unsignedInteger('product_id');
@@ -32,4 +35,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('product_attributes');
     }
-};
+}

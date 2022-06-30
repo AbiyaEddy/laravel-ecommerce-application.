@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('attributes', function (Blueprint $table) {
-            $table->BigIncrements('id');
+            $table->bigIncrements('id');
             $table->string('code')->unique();
             $table->string('name');
             $table->enum('frontend_type', ['select', 'radio', 'text', 'text_area']);

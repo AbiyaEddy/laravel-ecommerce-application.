@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('price', 2)->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

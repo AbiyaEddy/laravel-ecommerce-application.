@@ -1,10 +1,9 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
+class CreateProductImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('product_id')->index();
+            $table->unsignedBigInteger('product_id')->index();
             $table->string('thumbnail')->nullable();
             $table->string('full')->nullable();
 
@@ -33,4 +32,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('product_images');
     }
-};
+}
