@@ -8,6 +8,7 @@ use App\Contracts\CategoryContract;
 use App\Contracts\ProductContract;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\StoreProductFormRequest;
+use App\Contracts\AttributeContract;
 
 class ProductController extends BaseController
 {
@@ -17,6 +18,8 @@ class ProductController extends BaseController
     protected $categoryRepository;
 
     protected $productRepository;
+
+    protected $attributeRepository;
 
     public function __construct(
         BrandContract $brandRepository,

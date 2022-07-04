@@ -11,6 +11,8 @@ use App\Contracts\BrandContract;
 use App\Repository\BrandRepository;
 use App\Contracts\ProductContract;
 use App\Repository\ProductRepository;
+use App\Contracts\OrderContract;
+use App\RepositoryOrderRepository;
 
 
 
@@ -25,6 +27,8 @@ class RepositoryServiceProvider extends ServiceProvider
         BrandContract::class            =>          BrandRepository::class,
 
         ProductContract::class          =>          ProductRepository::class,
+
+        OrderContract::class            =>          OrderRepository::class,
     ];
 
     /**
